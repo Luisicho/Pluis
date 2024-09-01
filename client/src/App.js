@@ -4,6 +4,7 @@ function App() {
 
   const [backendData, setBackendData] = useState([{}])
 
+  //Fetch the backEnd with the api petition
   useEffect(() => {
     fetch('/api').then(
       response => response.json()
@@ -15,7 +16,16 @@ function App() {
   }, [])
 
   return (
-    <div>App</div>
+    <div>
+      {(typeof backendData.users === 'undefined') ? ( 
+        <p>Loading...</p>
+      ): (
+          backendData.users.map((user,i) => (
+          <p key={i}>{user}</p>
+        ))
+      )}
+
+    </div>
   )
 }
 
